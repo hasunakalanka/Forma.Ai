@@ -194,7 +194,9 @@
 
         // Show loading screen
         formSection.classList.add('hidden');
-        $$('.how-it-works, .hero, .testimonials').forEach(s => s.classList.add('hidden'));
+        document.getElementById('hero').classList.add('hidden');
+        document.getElementById('how-it-works').classList.add('hidden');
+        document.getElementById('testimonials').classList.add('hidden');
         loadingScreen.classList.remove('hidden');
         window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -509,5 +511,36 @@
         el.style.transform = 'translateY(20px)';
         observer.observe(el);
     });
+    // =============================================
+    // CONTACT MODAL
+    // =============================================
+    const contactTrigger = document.getElementById('contact-trigger');
+    const contactModal = document.getElementById('contact-modal');
+    const modalClose = document.getElementById('modal-close');
+
+    if (contactTrigger && contactModal) {
+        contactTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            contactModal.classList.remove('hidden');
+        });
+
+        modalClose.addEventListener('click', () => {
+            contactModal.classList.add('hidden');
+        });
+
+        // Close on backdrop click
+        contactModal.addEventListener('click', (e) => {
+            if (e.target === contactModal) {
+                contactModal.classList.add('hidden');
+            }
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !contactModal.classList.contains('hidden')) {
+                contactModal.classList.add('hidden');
+            }
+        });
+    }
 
 })();
