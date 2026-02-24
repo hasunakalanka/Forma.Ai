@@ -12,8 +12,9 @@
     const CONFIG = {
         // ⬇️ PASTE YOUR N8N WEBHOOK URL BELOW
         webhookUrl: 'https://akalanka29.app.n8n.cloud/webhook/b08a87c2-d693-47bf-9305-3fd755ceccd7',
-        // ⬇️ PASTE YOUR STRIPE PAYMENT LINK BELOW
-        stripeCheckoutUrl: 'https://buy.stripe.com/YOUR_STRIPE_PAYMENT_LINK',
+        // ⬇️ PASTE YOUR PAYPAL PAYMENT LINK BELOW
+        // This can be a PayPal.me link, PayPal hosted button URL, or PayPal checkout link
+        paypalCheckoutUrl: 'PASTE_YOUR_PAYPAL_PAYMENT_LINK_HERE',
     };
 
     // =============================================
@@ -442,24 +443,12 @@
     }
 
     // =============================================
-    // STRIPE CHECKOUT
+    // PAYPAL CHECKOUT
     // =============================================
     if (unlockBtn) {
         unlockBtn.addEventListener('click', () => {
-            // Option 1: Redirect to Stripe Payment Link (simplest)
-            window.location.href = CONFIG.stripeCheckoutUrl;
-
-            // Option 2: If using Stripe Checkout Sessions (server-side),
-            // you'd make a fetch call to your backend to create a session
-            // and then redirect to the session URL.
-            // Example:
-            // fetch('/api/create-checkout-session', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify({ email: $('#email').value }),
-            // })
-            // .then(res => res.json())
-            // .then(data => { window.location.href = data.url; });
+            // Redirect to PayPal payment link
+            window.location.href = CONFIG.paypalCheckoutUrl;
         });
     }
 
